@@ -1,0 +1,172 @@
+projet/java.examen
+└── src/
+    └── main/
+        └── java/
+            └── gestion/
+                ├── Module.java
+                ├── Professeur.java
+                ├── Cours.java
+                ├── GestionModules.java
+                ├── GestionCours.java
+                └── Main.java
+```
+
+1. `Module.java` :
+
+```java
+package gestion;
+
+public class Module {
+    private int id;
+    private String nom;
+
+}
+
+
+2. `Professeur.java` :
+
+```java
+package gestion;
+
+public class Professeur {
+    private int id;
+    private String nom;
+    private String prenom;
+    private String tel;
+
+    // Constructeur, getters, setters
+}
+```
+
+3. `Cours.java` :
+
+```java
+package gestion;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public class Cours {
+    private int id;
+    private LocalDate date;
+    private LocalTime heureDebut;
+    private LocalTime heureFin;
+    private Professeur professeur;
+    private Module module;
+
+}
+```
+
+4. `GestionModules.java` :
+
+```java
+package gestion;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GestionModules {
+    private List<Module> modules;
+
+    public GestionModules() {
+        modules = new ArrayList<>();
+    }
+
+    public void ajouterModule(Module module) {
+        modules.add(module);
+    }
+
+    public void listerModules() {
+        for (Module module : modules) {
+            System.out.println(module.getNom());
+        }
+    }
+}
+```
+
+5. `GestionCours.java` :
+
+```java
+package gestion;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GestionCours {
+    private List<Cours> cours;
+
+    public GestionCours() {
+        cours = new ArrayList<>();
+    }
+
+    public void creerCours(Cours cours) {
+        this.cours.add(cours);
+    }
+
+    public void listerTousLesCours() {
+        for (Cours cours : cours) {
+            System.out.println("Cours ID: " + cours.getId() + ", Date: " + cours.getDate() + ", Heure début: " + cours.getHeureDebut() + ", Heure fin: " + cours.getHeureFin());
+        }
+    }
+
+    public void listerCoursModuleProfesseur(Module module, Professeur professeur) {
+        for (Cours cours : cours) {
+            if (cours.getModule().equals(module) && cours.getProfesseur().equals(professeur)) {
+                System.out.println("Cours ID: " + cours.getId() + ", Date: " + cours.getDate() + ", Heure début: " + cours.getHeureDebut() + ", Heure fin: " + cours.getHeureFin());
+            }
+        }
+    }
+}
+```
+
+6. `Main.java` :
+
+```java
+package gestion;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        GestionModules gestionModules = new GestionModules();
+        GestionCours gestionCours = new GestionCours();
+
+        boolean continuer = true;
+        while (continuer) {
+            System.out.println("Choisissez une option : ");
+            System.out.println("1. Ajouter un module");
+            System.out.println("2. Lister les modules");
+            System.out.println("3. Créer un cours");
+            System.out.println("4. Lister tous les cours");
+            System.out.println("5. Lister les cours d’un module et d’un professeur");
+            System.out.println("6. Quitter");
+
+            int choix = scanner.nextInt();
+            scanner.nextLine(); // Pour consommer le retour à la ligne
+
+            switch (choix) {
+                case 1:
+                    // Logique pour ajouter un module
+                    break;
+                case 2:
+                    // Logique pour lister les modules
+                    break;
+                case 3:
+                    // Logique pour créer un cours
+                    break;
+                case 4:
+                    // Logique pour lister tous les cours
+                    break;
+                case 5:
+                    // Logique pour lister les cours d’un module et d’un professeur
+                    break;
+                case 6:
+                    continuer = false;
+                    break;
+                default:
+                    System.out.println("Choix invalide. Veuillez choisir à nouveau.");
+            }
+        }
+    }
+}
